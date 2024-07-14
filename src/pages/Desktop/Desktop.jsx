@@ -7,7 +7,8 @@ import { VscChromeMinimize, VscChromeRestore } from "react-icons/vsc";
 import { IoClose } from "react-icons/io5";
 
 const Desktop = () => {
-	const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false);
+	const [showOverlay, setShowOverlay] = useState(false); // State for overlay
 	const sideBarRef = useRef(null);
 	const [chatId, setChatId] = useState(null);
 
@@ -17,11 +18,13 @@ const Desktop = () => {
 
 	const handleSideBarToggle = () => {
 		setIsSideBarOpen(!isSideBarOpen);
+		setShowOverlay(!showOverlay); // Toggle overlay state
 	};
 
 	const handleClickOutside = (event) => {
 		if (sideBarRef.current && !sideBarRef.current.contains(event.target)) {
 			setIsSideBarOpen(false);
+			setShowOverlay(false); // Close sidebar and hide overlay
 		}
 	};
 
@@ -36,6 +39,12 @@ const Desktop = () => {
 		<div className="flex relative">
 			<DesktopSide handleSideBarToggle={handleSideBarToggle} />
 			{isSideBarOpen && <SideBar sideBarRef={sideBarRef} />}
+			{showOverlay && (
+				<div
+					className="fixed top-0 left-0 w-screen h-screen bg-transparent opacity-50 z-50"
+					onClick={handleSideBarToggle} // Close sidebar and hide overlay on overlay click
+				/>
+			)}
 			<SearchBar handleChat={handleChat} />
 			<ChatArea chatId={chatId} />
 		</div>

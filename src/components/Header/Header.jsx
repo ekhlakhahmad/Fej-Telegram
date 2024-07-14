@@ -4,11 +4,12 @@ import { FaBars } from "react-icons/fa";
 import Tab from "../Tab/Tab";
 import SideHeading from "../SideHeading/SideHeading";
 
-const Header = () => {
+const Header = ({ setShowOverlay }) => {
 	const [showSidebar, setShowSidebar] = useState(false);
 
 	const handleSidebarToggle = () => {
 		setShowSidebar(!showSidebar);
+		setShowOverlay(!showSidebar);
 	};
 
 	return (

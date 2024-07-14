@@ -6,25 +6,37 @@ import ChatArea from "../../components/ChatArea/ChatArea";
 
 const Mobile = () => {
 	const [chatId, setChatId] = useState(null);
-	const [ismessagewindow, setIsMessageWindows] = useState(false);
+	const [isMessageWindowOpen, setIsMessageWindowOpen] = useState(false);
+	const [showOverlay, setShowOverlay] = useState(false);
 
 	const handleChat = (name, status, chat_id) => {
-		setIsMessageWindows(!ismessagewindow);
-
 		setChatId({ name: name, status: status, chatId: chat_id });
+		setIsMessageWindowOpen(true);
 	};
+
 	const handleBack = () => {
-		setIsMessageWindows(false);
+		setIsMessageWindowOpen(false);
+	};
+
+	const handleClickOverlay = () => {
+		setIsMessageWindowOpen(false);
+		setShowOverlay(false);
 	};
 
 	return (
 		<div>
-			
-			<SideHeading />
-			{!ismessagewindow && <Header />  }
-
-			{!ismessagewindow && <SearchBar handleChat={handleChat} />}
-			{ismessagewindow && <ChatArea chatId={chatId} handleBack={handleBack} />}
+			{/* <SideHeading setShowSidebar={setShowOverlay} /> */}
+			{!isMessageWindowOpen && <Header setShowOverlay={setShowOverlay} />}
+			{!isMessageWindowOpen && <SearchBar handleChat={handleChat} />}
+			{isMessageWindowOpen && (
+				<ChatArea chatId={chatId} handleBack={handleBack} />
+			)}
+			{showOverlay && (
+				<div
+					className="fixed top-0 left-0 w-screen h-screen  bg-transparent opacity-50 z-50"
+					onClick={handleClickOverlay}
+				/>
+			)}
 		</div>
 	);
 };

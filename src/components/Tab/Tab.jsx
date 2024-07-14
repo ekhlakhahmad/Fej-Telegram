@@ -12,7 +12,7 @@ const Tab = () => {
 	};
 
 	return (
-		<div className="w-full overflow-x-auto flex gap-4 p-4">
+		<div className="w-full overflow-x-auto flex gap-4 p-4 bg-[#17212b] text-slate-200">
 			{/* Replace 'overflow-hidden' with 'overflow-x-auto' */}
 			<div className="flex justify-center items-center gap-1">
 				<button>All</button>

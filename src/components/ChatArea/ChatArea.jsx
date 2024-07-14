@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BsEmojiSmile, BsThreeDotsVertical } from "react-icons/bs";
+import { FaArrowLeft } from "react-icons/fa";
 import { GrAttachment } from "react-icons/gr";
 import { IoSearch } from "react-icons/io5";
 import { MdOutlineCall, MdOutlineKeyboardVoice } from "react-icons/md";
@@ -75,14 +76,15 @@ const ChatArea = ({ chatId, handleBack }) => {
 
 	return (
 		<div className="w-full h-screen flex flex-col bg-[#0e1621] text-slate-200  overflow-hidden">
-			<div className="lg:hidden block" onClick={handleBack}>
-				back
-			</div>
-
 			<div className="flex justify-between items-center py-2 px-4 bg-[#202b36] border-black border-l-[1px] text-slate-400">
-				<div className="flex flex-col">
-					<h1>{chatId.name}</h1>
-					<p>{chatId.status}</p>
+				<div className="flex items-center gap-4">
+					<div className="lg:hidden block" onClick={handleBack}>
+						<FaArrowLeft />
+					</div>
+					<div className="flex flex-col">
+						<h1>{chatId.name}</h1>
+						<p>{chatId.status}</p>
+					</div>
 				</div>
 				<div className="flex items-center gap-4 text-xl">
 					<IoSearch />
@@ -124,7 +126,7 @@ const ChatArea = ({ chatId, handleBack }) => {
 					)}
 				</div>
 			</div>
-			<div className="flex justify-between items-center py-2 px-4 bg-[#202b36]  border-black border-l-[1px] text-slate-400">
+			<div className="flex fixed bottom-0 w-full justify-between items-center py-2 px-4 bg-[#202b36]  border-black border-l-[1px] text-slate-400">
 				<div className=" w-full p-2 flex items-center justify-between gap-4">
 					<GrAttachment className="text-2xl" />
 					<input
@@ -133,7 +135,7 @@ const ChatArea = ({ chatId, handleBack }) => {
 						placeholder="Write a message..."
 					/>
 					<BsEmojiSmile className="text-2xl" />
-					<MdOutlineKeyboardVoice className="text-2xl" />
+					<MdOutlineKeyboardVoice className="text-3xl" />
 				</div>
 			</div>
 		</div>

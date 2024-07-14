@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import SingleChat from "../SingleChat/SingleChat";
+import { MdEdit } from "react-icons/md";
 
 const SearchBar = ({ handleChat }) => {
 	const [chats, setChats] = useState([]);
@@ -70,10 +71,10 @@ const SearchBar = ({ handleChat }) => {
 	}, []);
 
 	return (
-		<div className="lg:w-[650px] w-full h-screen px-2 bg-[#202b36] text-slate-500 ">
-			<div className="w-full p-2">
+		<div className="lg:w-[650px] w-full h-screen px-2 bg-[#202b36] text-slate-500">
+			<div className="w-full lg:block hidden p-2">
 				<input
-					className="w-full rounded-full py-2 px-4 outline-none bg-[#242f3d] text-slate-200"
+					className="w-full rounded-full py-2 px-4 outline-none bg-[#242f3d]  text-slate-200"
 					type="search"
 					placeholder="Search by name"
 					value={searchTerm}
@@ -93,6 +94,9 @@ const SearchBar = ({ handleChat }) => {
 						}
 					/>
 				))}
+			</div>
+			<div className="w-16 h-16 flex justify-center items-center rounded-[50%] bg-[#5eb5f7] absolute right-5 bottom-10">
+				<MdEdit className="text-3xl text-white" />
 			</div>
 		</div>
 	);

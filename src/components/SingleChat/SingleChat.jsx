@@ -10,7 +10,7 @@ const SingleChat = ({ chat, onClick }) => {
 	});
 	return (
 		<div
-			className="flex justify-between items-center gap-5 p-2"
+			className="flex justify-between items-center gap-5 p-2 shadow-md"
 			onClick={onClick}>
 			<div className="flex gap-5 items-center">
 				<img className="w-10" src={logo} alt="" />

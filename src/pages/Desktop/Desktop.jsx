@@ -9,6 +9,11 @@ import { IoClose } from "react-icons/io5";
 const Desktop = () => {
 	const [isSideBarOpen, setIsSideBarOpen] = useState(false);
 	const sideBarRef = useRef(null);
+	const [chatId, setChatId] = useState(null);
+
+	const handleChat = (chat_id) => {
+		setChatId(chat_id);
+	};
 
 	const closeWin = () => {
 		window.close();
@@ -48,8 +53,8 @@ const Desktop = () => {
 			<div className="flex relative">
 				<DesktopSide handleSideBarToggle={handleSideBarToggle} />
 				{isSideBarOpen && <SideBar sideBarRef={sideBarRef} />}
-				<SearchBar />
-				<ChatArea />
+				<SearchBar handleChat={handleChat} />
+				<ChatArea chatId={chatId} />
 			</div>
 		</div>
 	);

@@ -3,7 +3,7 @@ import React from "react";
 const MessageCount = ({ count }) => {
 	return (
 		<div>
-			<p className="w-5 h-5 text-center flex items-center justify-center bg-blue-500 rounded-[50%] text-white">
+			<p className="text-center flex items-center justify-center bg-blue-500 rounded-full px-2 text-white">
 				{count}
 			</p>
 		</div>

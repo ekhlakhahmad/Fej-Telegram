@@ -11,16 +11,8 @@ const Desktop = () => {
 	const sideBarRef = useRef(null);
 	const [chatId, setChatId] = useState(null);
 
-	const handleChat = (chat_id) => {
-		setChatId(chat_id);
-	};
-
-	const closeWin = () => {
-		window.close();
-	};
-
-	const minimizeWin = () => {
-		window.minimize();
+	const handleChat = (name, status, chat_id) => {
+		setChatId({ name: name, status: status, chatId: chat_id });
 	};
 
 	const handleSideBarToggle = () => {
@@ -41,21 +33,11 @@ const Desktop = () => {
 	}, []);
 
 	return (
-		<div className="flex flex-col">
-			<div className="flex justify-end items-center gap-4 px-4 py-1 bg-[#1f2936] text-white">
-				<VscChromeMinimize
-					onClick={minimizeWin}
-					className="hover:bg-slate-500"
-				/>
-				<VscChromeRestore className="hover:bg-slate-500" />
-				<IoClose onClick={closeWin} className="hover:bg-red-800" />
-			</div>
-			<div className="flex relative">
-				<DesktopSide handleSideBarToggle={handleSideBarToggle} />
-				{isSideBarOpen && <SideBar sideBarRef={sideBarRef} />}
-				<SearchBar handleChat={handleChat} />
-				<ChatArea chatId={chatId} />
-			</div>
+		<div className="flex relative">
+			<DesktopSide handleSideBarToggle={handleSideBarToggle} />
+			{isSideBarOpen && <SideBar sideBarRef={sideBarRef} />}
+			<SearchBar handleChat={handleChat} />
+			<ChatArea chatId={chatId} />
 		</div>
 	);
 };

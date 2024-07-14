@@ -1,12 +1,16 @@
 import React from "react";
-import Home from "./pages/Home/Home";
+import Mobile from "./pages/Mobile/Mobile";
 import Desktop from "./pages/Desktop/Desktop";
 
 const App = () => {
 	return (
 		<div>
-			{/* <Home/> */}
-			<Desktop />
+			<div className="lg:hidden">
+				<Mobile />
+			</div>
+			<div className="hidden lg:block">
+				<Desktop />
+			</div>
 		</div>
 	);
 };

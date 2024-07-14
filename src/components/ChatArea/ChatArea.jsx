@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { BsEmojiSmile, BsThreeDotsVertical } from "react-icons/bs";
+import { GrAttachment } from "react-icons/gr";
+import { IoSearch } from "react-icons/io5";
+import { MdOutlineCall, MdOutlineKeyboardVoice } from "react-icons/md";
+import { RiSave2Line } from "react-icons/ri";
 
-const ChatArea = ({ chatId }) => {
+const ChatArea = ({ chatId, handleBack }) => {
 	const [messages, setMessages] = useState([]);
 	const [loading, setLoading] = useState(false);
 
@@ -11,7 +16,7 @@ const ChatArea = ({ chatId }) => {
 			setLoading(true);
 			try {
 				const response = await fetch(
-					`https://devapi.beyondchats.com/api/get_chat_messages?chat_id=${chatId}`
+					`https://devapi.beyondchats.com/api/get_chat_messages?chat_id=${chatId.chatId}`
 				);
 				const data = await response.json();
 				setMessages(data?.data || []); // Adjust according to the actual data structure
@@ -69,37 +74,67 @@ const ChatArea = ({ chatId }) => {
 	}
 
 	return (
-		<div className="w-full h-screen flex flex-col bg-[#0e1621] text-slate-200 p-4 overflow-hidden">
+		<div className="w-full h-screen flex flex-col bg-[#0e1621] text-slate-200  overflow-hidden">
+			<div className="lg:hidden block" onClick={handleBack}>
+				back
+			</div>
+
+			<div className="flex justify-between items-center py-2 px-4 bg-[#202b36] border-black border-l-[1px] text-slate-400">
+				<div className="flex flex-col">
+					<h1>{chatId.name}</h1>
+					<p>{chatId.status}</p>
+				</div>
+				<div className="flex items-center gap-4 text-xl">
+					<IoSearch />
+					<MdOutlineCall />
+					<RiSave2Line />
+					<BsThreeDotsVertical />
+				</div>
+			</div>
 			<div
-				className="overflow-y-scroll flex-1"
+				className=" overflow-y-scroll w-full h-screen py-2 px-4  "
 				style={{ scrollbarWidth: "none" }}>
-				{messages.length === 0 ? (
-					<h1 className="p-1 px-3 bg-[#1e2c3a] rounded-full">
-						No messages in this chat.
-					</h1>
-				) : (
-					messages.map((message) => (
-						<div
-							key={message.id}
-							className={`flex items-start mb-4 ${
-								message.sender.name === "BeyondChat"
-									? "justify-start"
-									: "justify-end"
-							}`}>
+				<div className="flex-1">
+					{messages.length === 0 ? (
+						<h1 className="p-1 px-3 bg-[#1e2c3a] rounded-full">
+							No messages in this chat.
+						</h1>
+					) : (
+						messages.map((message) => (
 							<div
-								className={`p-2 rounded max-w-[70%] ${
+								key={message.id}
+								className={`flex items-start mb-4 ${
 									message.sender.name === "BeyondChat"
-										? "bg-sky-400 text-sky-900"
-										: "bg-[#1e2c3a]"
+										? "justify-start"
+										: "justify-end"
 								}`}>
-								{renderMessageContent(message.message)}
-								<div className="flex flex-col items-end justify-end ml-2 text-xs">
-									<span>{formatTime(message.created_at)}</span>
+								<div
+									className={`p-2 rounded max-w-[70%] ${
+										message.sender.name === "BeyondChat"
+											? "bg-[#2b5278] text-slate-300"
+											: "bg-[#1e2c3a]"
+									}`}>
+									{renderMessageContent(message.message)}
+									<div className="flex flex-col items-end justify-end ml-2 text-xs">
+										<span>{formatTime(message.created_at)}</span>
+									</div>
 								</div>
 							</div>
-						</div>
-					))
-				)}
+						))
+					)}
+				</div>
+			</div>
+			<div className="flex justify-between items-center py-2 px-4 bg-[#202b36]  border-black border-l-[1px] text-slate-400">
+				<div className=" w-full p-2 flex items-center justify-between gap-4">
+					<GrAttachment className="text-2xl" />
+					<input
+						className="w-full bg-transparent outline-none"
+						type="search"
+						placeholder="Write a message..."
+					/>
+					<BsEmojiSmile className="text-2xl" />
+					<MdOutlineKeyboardVoice className="text-2xl" />
+				</div>
 			</div>
 		</div>
 	);

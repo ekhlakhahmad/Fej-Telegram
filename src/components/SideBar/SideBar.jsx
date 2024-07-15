@@ -10,7 +10,7 @@ const SideBar = ({ sideBarRef }) => {
 	return (
 		<div
 			ref={sideBarRef}
-			className="flex flex-col w-[300px] h-screen bg-[#17212b] text-slate-300 absolute top-0">
+			className="flex flex-col w-[300px] h-screen bg-[#17212b] text-slate-300 absolute top-0 z-50">
 			<div className="flex flex-col p-4 gap-3 border-b-[1px] border-slate-900">
 				<img className="w-10 cursor-pointer" src={logo} alt="" />
 				<div className="flex justify-between items-center">

@@ -4,7 +4,7 @@ import MessageCount from "../MessageCount/MessageCount";
 const Tab = () => {
 	// Dummy data for message counts (replace with actual data or state if dynamic)
 	const messageCounts = {
-		all: 7,
+		all: 16,
 		channels: 5,
 		groups: 3,
 		bots: 6,

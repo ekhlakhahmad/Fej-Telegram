@@ -71,7 +71,7 @@ const SearchBar = ({ handleChat }) => {
 	}, []);
 
 	return (
-		<div className="lg:w-[650px] w-full h-screen px-2 bg-[#202b36] text-slate-500">
+		<div className="lg:w-[650px] w-full h-screen px-2 bg-[#202b36] text-slate-500 relative">
 			<div className="w-full lg:block hidden p-2">
 				<input
 					className="w-full rounded-full py-2 px-4 outline-none bg-[#242f3d]  text-slate-200"
@@ -95,8 +95,10 @@ const SearchBar = ({ handleChat }) => {
 					/>
 				))}
 			</div>
-			<div className="w-16 h-16 flex justify-center items-center rounded-[50%] bg-[#5eb5f7] absolute right-5 bottom-10">
-				<MdEdit className="text-3xl text-white" />
+			<div className="lg:hidden block">
+				<div className="w-16 h-16 flex justify-center items-center rounded-[50%] bg-[#5eb5f7] absolute right-5 bottom-[180px]">
+					<MdEdit className="text-3xl text-white " />
+				</div>
 			</div>
 		</div>
 	);

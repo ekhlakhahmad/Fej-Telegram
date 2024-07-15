@@ -75,7 +75,7 @@ const ChatArea = ({ chatId, handleBack }) => {
 	}
 
 	return (
-		<div className="w-full h-screen flex flex-col bg-[#0e1621] text-slate-200  overflow-hidden">
+		<div className="w-full h-screen flex flex-col bg-[#0e1621] text-slate-200  overflow-hidden relative">
 			<div className="flex justify-between items-center py-2 px-4 bg-[#202b36] border-black border-l-[1px] text-slate-400">
 				<div className="flex items-center gap-4">
 					<div className="lg:hidden block" onClick={handleBack}>
@@ -126,8 +126,8 @@ const ChatArea = ({ chatId, handleBack }) => {
 					)}
 				</div>
 			</div>
-			<div className="flex fixed bottom-0 w-full justify-between items-center py-2 px-4 bg-[#202b36]  border-black border-l-[1px] text-slate-400">
-				<div className=" w-full p-2 flex items-center justify-between gap-4">
+			<div className="flex w-full items-center py-2 px-4 bg-[#202b36]  border-black border-l-[1px] text-slate-400">
+				<div className="w-full p-2 flex items-center justify-between gap-4">
 					<GrAttachment className="text-2xl" />
 					<input
 						className="w-full bg-transparent outline-none"
